@@ -3,19 +3,20 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useBookingModal } from "./BookingModalContext";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/about-us", label: "About Us" },
-  { href: "/our-services", label: "Our Services" },
-  { href: "/book-online", label: "Book Online" },
+  { href: "/about", label: "About Us" },
+  { href: "/services", label: "Our Services" },
   { href: "/blog", label: "Blog" },
-  { href: "/contact-us", label: "Contact Us" },
+  { href: "/contact", label: "Contact Us" },
 ];
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { openBookingModal } = useBookingModal();
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur-md transition-all">
@@ -66,11 +67,12 @@ export function SiteHeader() {
             const isActive =
               link.href === "/"
                 ? pathname === "/"
-                : pathname.startsWith(link.href) ||
-                  (link.href === "/about-us" && pathname.startsWith("/about")) ||
-                  (link.href === "/our-services" &&
-                    (pathname.startsWith("/services") || pathname.startsWith("/service-page"))) ||
-                  (link.href === "/contact-us" && pathname.startsWith("/contact"));
+                : pathname === link.href ||
+                  pathname.startsWith(`${link.href}/`) ||
+                  (link.href === "/about" && pathname.startsWith("/about-us")) ||
+                  (link.href === "/services" &&
+                    (pathname.startsWith("/our-services") || pathname.startsWith("/service-page"))) ||
+                  (link.href === "/contact" && pathname.startsWith("/contact-us"));
 
             return (
               <Link
@@ -96,22 +98,24 @@ export function SiteHeader() {
           >
             Client Portal
           </Link>
-          <Link
-            href="/book-online"
+          <button
+            type="button"
+            onClick={() => openBookingModal()}
             className="rounded-lg bg-emerald-800 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 transition"
           >
             Book Online
-          </Link>
+          </button>
         </div>
 
         {/* Mobile Menu Button */}
         <div className="flex items-center gap-2 lg:hidden">
-          <Link
-            href="/book-online"
+          <button
+            type="button"
+            onClick={() => openBookingModal()}
             className="rounded-lg bg-emerald-800 px-3 py-1.5 text-xs font-semibold text-white hover:bg-emerald-700"
           >
             Book
-          </Link>
+          </button>
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -146,6 +150,16 @@ export function SiteHeader() {
               </Link>
             ))}
             <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  openBookingModal();
+                }}
+                className="w-full text-center rounded-lg bg-emerald-800 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700"
+              >
+                Book Online
+              </button>
               <Link
                 href="/portal"
                 onClick={() => setMobileMenuOpen(false)}

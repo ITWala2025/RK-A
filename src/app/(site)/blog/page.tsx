@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { blogPosts } from "@/lib/domain/blog-content";
-import { ContactForm } from "@/components/site/ContactForm";
+import { ContactCTA } from "@/components/site/ContactCTA";
 
 export const metadata: Metadata = {
   title: "Blog & Accounting Insights | RK & Associates",
@@ -78,20 +78,12 @@ export default function BlogListingPage() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="bg-white py-16 border-t border-slate-200">
-        <div className="mx-auto max-w-3xl px-6">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-slate-900">Contact Us</h2>
-            <p className="mt-2 text-sm text-slate-600">
-              We&apos;d love to hear from you! Please reach out with any comments or feedback.
-            </p>
-          </div>
-          <div className="mt-8 rounded-xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
-            <ContactForm />
-          </div>
-        </div>
-      </section>
+      {/* Contact CTA Section (Navigates to /contact-us) */}
+      <ContactCTA
+        title="Have Questions or Need Financial Guidance?"
+        subtitle="CONTACT US"
+        description="We’d love to hear from you! Please reach out with any comments, questions, or feedback."
+      />
     </div>
   );
 }

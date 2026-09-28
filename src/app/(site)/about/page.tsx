@@ -1,156 +1,184 @@
-import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { ContactForm } from "@/components/site/ContactForm";
+import { ContactCTA } from "@/components/site/ContactCTA";
+import { BookOnlineButton } from "@/components/site/BookOnlineButton";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "About Us | RK & Associates",
   description:
-    "Learn about RK & Associates, our expertise, why businesses choose us, and our commitment to financial success across Ireland.",
+    "Learn about RK & Associates, our certified chartered accountants, client partnerships, and decade-long commitment to Irish business success in Dublin.",
 };
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-col">
-      {/* Header Banner */}
-      <section className="bg-slate-900 text-white py-16 sm:py-20">
-        <div className="mx-auto max-w-6xl px-6">
-          <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">
-            RK &amp; Associates
-          </span>
-          <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
-            ABOUT RK &amp; ASSOCIATES
-          </h1>
-          <p className="mt-4 max-w-2xl text-base text-slate-300 sm:text-lg">
-            Dedicated to offering top-notch financial management solutions and building trusted
-            client partnerships.
-          </p>
+    <div className="flex flex-col bg-white">
+      {/* 1. Header Hero Banner with Advisory Team Image */}
+      <section className="relative overflow-hidden bg-slate-950 text-white pt-14 pb-20 lg:pt-20 lg:pb-28">
+        <div className="absolute inset-0 radial-glow pointer-events-none" />
+        <div className="relative mx-auto max-w-7xl px-6">
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-bold text-emerald-400">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                ABOUT RK &amp; ASSOCIATES &bull; DUBLIN, IRELAND
+              </span>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                Dedicated to Irish Financial Excellence &amp; Growth
+              </h1>
+              <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
+                RK &amp; Associates is a premier accountancy and strategic advisory firm based in
+                Dublin. For over a decade, we have partnered with Irish SMEs, growing corporations,
+                and innovative founders to build robust financial foundations.
+              </p>
+              <div className="flex flex-wrap gap-4 pt-2">
+                <BookOnlineButton className="rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg transition hover:bg-emerald-500">
+                  Book a Consultation &rarr;
+                </BookOnlineButton>
+                <Link
+                  href="/services"
+                  className="rounded-xl border border-slate-700 bg-white/5 px-6 py-3.5 text-sm font-semibold text-slate-200 backdrop-blur transition hover:bg-white/10"
+                >
+                  Explore Practice Areas
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Image */}
+            <div className="lg:col-span-5">
+              <div className="relative rounded-3xl overflow-hidden border border-slate-700 shadow-2xl bg-slate-900 group">
+                <Image
+                  src="/images/about-team.jpg"
+                  alt="RK & Associates Advisory Team Strategy Session"
+                  width={800}
+                  height={500}
+                  className="w-full h-auto object-cover transition duration-700 group-hover:scale-105"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-4 left-4 right-4 glass-panel rounded-xl p-3.5 text-xs text-white border border-white/10">
+                  <span className="font-bold text-emerald-400 block">Senior Partner Advisory Team</span>
+                  <span className="text-slate-300 text-[11px]">Chartered Accountants &bull; Tax Specialists &bull; CRO Compliance Officers</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Main Content */}
-      <section className="bg-white py-16">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+      {/* 2. OUR STORY & PHILOSOPHY */}
+      <section className="bg-white py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-emerald-800">
-                Our Story
+              <span className="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full">
+                OUR BACKGROUND
               </span>
-              <h2 className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
-                Our Expertise &amp; Background
+              <h2 className="mt-4 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+                A Modern Approach to Enterprise Accountancy
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-slate-600">
-                RK &amp; Associates is a leading accountancy service provider, dedicated to offering
-                top-notch financial management solutions. Our team of experts is committed to
-                delivering high-quality services tailored to meet the unique needs of each client.
-              </p>
-              <p className="mt-4 text-base leading-relaxed text-slate-600">
-                We take pride in our professionalism and the trust we build with our clients. This is
-                where our proactive approach and attention to detail set us apart in delivering
-                exceptional accountancy, tax, payroll, and corporate compliance services.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-8">
-              <h3 className="text-xl font-bold text-slate-900">Professional Financial Advisors</h3>
-              <p className="mt-4 text-sm leading-relaxed text-slate-600">
-                At RK &amp; Associates, we are passionate about delivering exceptional financial
-                advisory services that empower our clients to make informed decisions. Our experienced
-                advisors are here to guide you through the complexities of financial management,
-                ensuring your peace of mind and success.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link
-                  href="/book-online"
-                  className="rounded-lg bg-emerald-800 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700 transition"
-                >
-                  Book a Consultation
-                </Link>
-                <Link
-                  href="/our-services"
-                  className="rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 transition"
-                >
-                  Explore Services
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Why Choose Us */}
-          <div className="mt-20">
-            <div className="text-center">
-              <span className="text-xs font-bold uppercase tracking-wider text-emerald-800">
-                Why Choose Us
-              </span>
-              <h2 className="mt-2 text-3xl font-bold text-slate-900">
-                Committed to Your Financial Success
-              </h2>
-              <p className="mx-auto mt-3 max-w-2xl text-base text-slate-600">
-                We are dedicated to staying ahead of industry trends and changes, ensuring that our
-                clients always receive the most relevant and effective financial solutions.
-              </p>
-            </div>
-
-            <div className="mt-12 grid gap-8 md:grid-cols-2">
-              <div className="rounded-xl border border-slate-200 bg-white p-8 shadow-sm">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-100 text-emerald-800 font-bold">
-                  ✓
-                </div>
-                <h3 className="mt-4 text-xl font-bold text-slate-900">
-                  Proactive &amp; Forward-Looking
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  Our proactive approach sets us apart, giving you the confidence to navigate the
-                  financial landscape with ease. We don&apos;t just look backward at past numbers &mdash;
-                  we help you anticipate tax liabilities, regulatory changes, and cash flow requirements.
+              <div className="mt-6 space-y-4 text-sm leading-relaxed text-slate-600">
+                <p>
+                  RK &amp; Associates was founded with a singular purpose: to replace rigid, reactive
+                  accounting with agile, proactive financial management that creates genuine
+                  commercial value.
+                </p>
+                <p>
+                  Our team combines deep expertise in Irish GAAP, statutory Revenue regulations,
+                  and Companies Registration Office (CRO) compliance with state-of-the-art cloud
+                  accounting technologies.
+                </p>
+                <p>
+                  We believe that great accountancy isn&apos;t just about filing tax returns at year-end;
+                  it is about providing founders, directors, and finance executives with continuous
+                  clarity, proactive cash flow strategies, and complete peace of mind.
                 </p>
               </div>
 
-              <div className="rounded-xl border border-slate-200 bg-white p-8 shadow-sm">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-100 text-emerald-800 font-bold">
-                  ★
+              <div className="mt-8 grid grid-cols-2 gap-4 border-t border-slate-100 pt-6">
+                <div>
+                  <h4 className="font-extrabold text-2xl text-emerald-800">100%</h4>
+                  <p className="text-xs text-slate-500 mt-1">Audit Exemption Compliance Rate</p>
                 </div>
-                <h3 className="mt-4 text-xl font-bold text-slate-900">
-                  Tailored Solutions for Your Business
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  With in-depth knowledge and a deep understanding of diverse business needs, we
-                  offer comprehensive financial services that are customized to serve the specific
-                  requirements of small businesses, startups, and freelancers.
-                </p>
+                <div>
+                  <h4 className="font-extrabold text-2xl text-slate-900">Dublin 8 &amp; D15</h4>
+                  <p className="text-xs text-slate-500 mt-1">Twin Strategic Office Hubs</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Strategic Pillars Box */}
+            <div className="rounded-3xl border border-slate-200 bg-slate-50/80 p-8 sm:p-10 shadow-sm space-y-6">
+              <h3 className="text-xl font-bold text-slate-900 border-b border-slate-200 pb-4">
+                Our Core Operating Pillars
+              </h3>
+
+              <div className="space-y-5">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-800 font-bold">
+                    01
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-slate-900">Proactive Compliance &amp; Tax</h4>
+                    <p className="mt-1 text-xs text-slate-600 leading-relaxed">
+                      We monitor statutory deadlines (CT1, VAT3, Form B1) in advance, ensuring no
+                      penalties or loss of audit exemption status.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-800 font-bold">
+                    02
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-slate-900">Transparent Euro Pricing</h4>
+                    <p className="mt-1 text-xs text-slate-600 leading-relaxed">
+                      Predictable fixed-fee packages with zero hidden hourly surcharges, allowing
+                      accurate budgeting for growing businesses.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-800 font-bold">
+                    03
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-slate-900">Dedicated Client Relationship Manager</h4>
+                    <p className="mt-1 text-xs text-slate-600 leading-relaxed">
+                      Direct phone and email contact with senior chartered professionals who know your
+                      business inside and out.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonial */}
-      <section className="bg-emerald-900 py-16 text-white text-center">
-        <div className="mx-auto max-w-4xl px-6">
-          <blockquote className="text-xl font-medium italic text-emerald-50 sm:text-2xl">
-            &ldquo;I&apos;m incredibly impressed with the professionalism and expertise of RK &amp;
-            Associates. Their tailored accountancy solutions have made a significant impact on our
-            business growth.&rdquo;
+      {/* 3. EXECUTIVE TESTIMONIAL BANNER */}
+      <section className="bg-slate-900 py-20 text-white">
+        <div className="mx-auto max-w-4xl px-6 text-center">
+          <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">
+            CLIENT PARTNERSHIP
+          </span>
+          <blockquote className="mt-6 text-2xl sm:text-3xl font-medium italic text-slate-100 leading-relaxed">
+            &ldquo;Their attention to detail and swift turnaround on our statutory accounts and VAT
+            filings have made RK &amp; Associates an indispensable asset to our executive team.&rdquo;
           </blockquote>
-          <p className="mt-4 text-sm font-semibold text-emerald-200">
-            &mdash; Shefali Chawla, Founder of Consciouse Ltd
+          <p className="mt-6 text-sm font-bold text-emerald-400">
+            &mdash; Founder, Irish Digital &amp; Tech Solutions
           </p>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="bg-slate-50 py-16 border-t border-slate-200">
-        <div className="mx-auto max-w-3xl px-6">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-slate-900">Contact Us</h2>
-            <p className="mt-2 text-sm text-slate-600">
-              We&apos;d love to hear from you! Please reach out with any comments or feedback.
-            </p>
-          </div>
-          <div className="mt-8 rounded-xl border border-slate-200 bg-white p-8 shadow-sm">
-            <ContactForm />
-          </div>
-        </div>
-      </section>
+      {/* 4. REUSABLE CONTACT CTA */}
+      <ContactCTA
+        title="Connect With Our Senior Chartered Advisors"
+        subtitle="SCHEDULE A STRATEGY SESSION"
+        description="We’d love to discuss how our tailored accountancy solutions can add immediate value to your Irish business."
+      />
     </div>
   );
 }

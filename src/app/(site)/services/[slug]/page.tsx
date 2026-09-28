@@ -2,10 +2,20 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getServiceBySlug, servicePages } from "@/lib/domain/services-content";
-import { ContactForm } from "@/components/site/ContactForm";
+import { ContactCTA } from "@/components/site/ContactCTA";
+import { BookOnlineButton } from "@/components/site/BookOnlineButton";
 
 export function generateStaticParams() {
-  return servicePages.map((service) => ({ slug: service.slug }));
+  const slugs: { slug: string }[] = [];
+  for (const service of servicePages) {
+    slugs.push({ slug: service.slug });
+    if (service.aliases) {
+      for (const alias of service.aliases) {
+        slugs.push({ slug: alias });
+      }
+    }
+  }
+  return slugs;
 }
 
 export async function generateMetadata({
@@ -40,7 +50,7 @@ export default async function ServiceDetailPage({
               Home
             </Link>
             <span>/</span>
-            <Link href="/our-services" className="hover:text-emerald-400 transition">
+            <Link href="/services" className="hover:text-emerald-400 transition">
               Services
             </Link>
             <span>/</span>
@@ -101,6 +111,24 @@ export default async function ServiceDetailPage({
                 </div>
               </div>
 
+              {/* Features / Highlights */}
+              {service.features && service.features.length > 0 && (
+                <div className="mt-10">
+                  <h3 className="text-lg font-bold text-slate-900">Service Highlights</h3>
+                  <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                    {service.features.map((feat) => (
+                      <div
+                        key={feat}
+                        className="flex items-center gap-3 rounded-xl border border-emerald-100 bg-emerald-50/40 p-4 text-sm font-medium text-emerald-950"
+                      >
+                        <span className="text-emerald-600 font-bold">★</span>
+                        <span>{feat}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* FAQs */}
               {service.faq && service.faq.length > 0 && (
                 <div className="mt-12">
@@ -124,9 +152,9 @@ export default async function ServiceDetailPage({
             <div className="lg:col-span-1">
               <div className="sticky top-28 space-y-6">
                 <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
-                  <h3 className="text-lg font-bold text-slate-900">Book Online</h3>
+                  <h3 className="text-lg font-bold text-slate-900">Book Online Modal</h3>
                   <p className="mt-2 text-xs text-slate-600">
-                    Schedule a dedicated consultation session with our certified professionals.
+                    Schedule a direct consultation session with our certified professionals.
                   </p>
 
                   <div className="mt-5 space-y-3 text-xs text-slate-600 border-t border-slate-200 pt-4">
@@ -148,16 +176,18 @@ export default async function ServiceDetailPage({
                     </div>
                   </div>
 
-                  <Link
-                    href={`/book-online?service=${encodeURIComponent(service.slug)}`}
-                    className="mt-6 block w-full rounded-lg bg-emerald-800 py-3 text-center text-sm font-semibold text-white shadow hover:bg-emerald-700 transition"
-                  >
-                    Proceed to Booking &rarr;
-                  </Link>
+                  <div className="mt-6">
+                    <BookOnlineButton
+                      serviceSlug={service.slug}
+                      className="block w-full rounded-lg bg-emerald-800 py-3 text-center text-sm font-semibold text-white shadow hover:bg-emerald-700 transition"
+                    >
+                      Open Booking Modal &rarr;
+                    </BookOnlineButton>
+                  </div>
                 </div>
 
                 <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm text-xs text-slate-600 space-y-2">
-                  <h4 className="font-bold text-slate-900 text-sm mb-2">Contact Details</h4>
+                  <h4 className="font-bold text-slate-900 text-sm mb-2">Office Details</h4>
                   <p>📍 Saint Kevin&apos;s, Dublin 8, D02 XE80, Ireland</p>
                   <p>
                     📞{" "}
@@ -178,20 +208,12 @@ export default async function ServiceDetailPage({
         </div>
       </section>
 
-      {/* Contact Form Section */}
-      <section className="bg-slate-50 py-16 border-t border-slate-200">
-        <div className="mx-auto max-w-3xl px-6">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-slate-900">Have Questions About This Service?</h2>
-            <p className="mt-2 text-sm text-slate-600">
-              Send us an inquiry and our accounting team will respond promptly.
-            </p>
-          </div>
-          <div className="mt-8 rounded-xl border border-slate-200 bg-white p-8 shadow-sm">
-            <ContactForm initialService={service.title} />
-          </div>
-        </div>
-      </section>
+      {/* Contact CTA Section */}
+      <ContactCTA
+        title={`Questions Regarding ${service.title}?`}
+        subtitle="CONTACT US"
+        description="Reach out to our certified accountants to discuss your specific requirements or arrange a personalized package."
+      />
     </div>
   );
 }

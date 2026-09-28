@@ -1,6 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { useBookingModal } from "./BookingModalContext";
 
 export function SiteFooter() {
+  const { openBookingModal } = useBookingModal();
+
   return (
     <footer className="border-t border-slate-200 bg-slate-950 text-slate-300">
       <div className="mx-auto max-w-6xl px-6 py-14">
@@ -17,7 +22,7 @@ export function SiteFooter() {
             </div>
             <p className="mt-4 text-sm leading-relaxed text-slate-400">
               Dedicated to providing top-notch accountancy services, strategic tax planning,
-              and expert business advisory tailored for small businesses, startups, and freelancers.
+              and expert business advisory tailored for Irish businesses, startups, and individuals.
             </p>
             <div className="mt-6">
               <p className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
@@ -45,34 +50,38 @@ export function SiteFooter() {
             </p>
             <ul className="mt-4 space-y-2.5 text-sm text-slate-400">
               <li>
-                <Link href="/service-page/bookkeeping-service" className="hover:text-emerald-400 transition">
-                  Bookkeeping Service ($150)
+                <Link href="/service-page/accounting-and-bookkeeping" className="hover:text-emerald-400 transition">
+                  Accounting &amp; Bookkeeping (€150)
+                </Link>
+              </li>
+              <li>
+                <Link href="/service-page/taxation-and-advisory" className="hover:text-emerald-400 transition">
+                  Taxation &amp; Advisory (€100)
+                </Link>
+              </li>
+              <li>
+                <Link href="/service-page/financial-reconciliation" className="hover:text-emerald-400 transition">
+                  Financial Reconciliation (€120)
+                </Link>
+              </li>
+              <li>
+                <Link href="/service-page/personalized-consultation" className="hover:text-emerald-400 transition">
+                  Personalized Consultation (€100)
                 </Link>
               </li>
               <li>
                 <Link href="/service-page/payroll-processing" className="hover:text-emerald-400 transition">
-                  Payroll Processing ($120)
+                  Payroll Processing (€120)
                 </Link>
               </li>
               <li>
-                <Link href="/service-page/tax-consultation" className="hover:text-emerald-400 transition">
-                  Tax Consultation ($100)
-                </Link>
-              </li>
-              <li>
-                <Link href="/our-services" className="hover:text-emerald-400 transition">
-                  Financial Reconciliation
-                </Link>
-              </li>
-              <li>
-                <Link href="/our-services" className="hover:text-emerald-400 transition">
-                  Personalized Consultation
-                </Link>
-              </li>
-              <li>
-                <Link href="/book-online" className="font-medium text-emerald-400 hover:text-emerald-300 transition">
-                  Book Online &rarr;
-                </Link>
+                <button
+                  type="button"
+                  onClick={() => openBookingModal()}
+                  className="font-medium text-emerald-400 hover:text-emerald-300 transition text-left"
+                >
+                  Book Online Modal &rarr;
+                </button>
               </li>
             </ul>
           </div>
@@ -84,13 +93,13 @@ export function SiteFooter() {
             </p>
             <ul className="mt-4 space-y-2.5 text-sm text-slate-400">
               <li>
-                <Link href="/about-us" className="hover:text-emerald-400 transition">
+                <Link href="/about" className="hover:text-emerald-400 transition">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/our-services" className="hover:text-emerald-400 transition">
-                  All Services
+                <Link href="/services" className="hover:text-emerald-400 transition">
+                  Our Services
                 </Link>
               </li>
               <li>
@@ -99,7 +108,7 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/contact-us" className="hover:text-emerald-400 transition">
+                <Link href="/contact" className="hover:text-emerald-400 transition">
                   Contact Us
                 </Link>
               </li>

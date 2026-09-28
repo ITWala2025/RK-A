@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getBlogPostBySlug, blogPosts } from "@/lib/domain/blog-content";
-import { ContactForm } from "@/components/site/ContactForm";
+import { ContactCTA } from "@/components/site/ContactCTA";
+import { BookOnlineButton } from "@/components/site/BookOnlineButton";
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
@@ -86,15 +87,12 @@ export default async function BlogPostPage({
             <p className="mt-2 text-sm text-emerald-900 leading-relaxed">
               Take the first step towards financial success and contact us today to schedule a
               consultation. Let us take the stress out of financial management so you can focus on
-              what you do best &ndash; growing your business.
+              what you do best &ndash; growing your business in Ireland.
             </p>
             <div className="mt-6 flex flex-wrap gap-4">
-              <Link
-                href="/book-online"
-                className="rounded-lg bg-emerald-800 px-5 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700 transition"
-              >
+              <BookOnlineButton className="rounded-lg bg-emerald-800 px-5 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700 transition">
                 Book a Consultation Online
-              </Link>
+              </BookOnlineButton>
               <a
                 href="tel:+353899660987"
                 className="inline-flex items-center rounded-lg border border-emerald-300 bg-white px-5 py-2.5 text-sm font-semibold text-emerald-900 hover:bg-emerald-100 transition"
@@ -140,20 +138,12 @@ export default async function BlogPostPage({
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="bg-slate-50 py-16 border-t border-slate-200">
-        <div className="mx-auto max-w-3xl px-6">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-slate-900">Contact Us</h2>
-            <p className="mt-2 text-sm text-slate-600">
-              We&apos;d love to hear from you! Please reach out with any comments or feedback.
-            </p>
-          </div>
-          <div className="mt-8 rounded-xl border border-slate-200 bg-white p-8 shadow-sm">
-            <ContactForm />
-          </div>
-        </div>
-      </section>
+      {/* Contact CTA Section (Navigates to /contact-us) */}
+      <ContactCTA
+        title="We’d love to hear from you!"
+        subtitle="CONTACT US"
+        description="Please reach out with any comments, questions, or feedback, and our team will respond promptly."
+      />
     </div>
   );
 }

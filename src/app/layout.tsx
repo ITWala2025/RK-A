@@ -1,33 +1,37 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "RK & Associates | Accountant, Bookkeeping & Advisory",
+    default: "RK & Associates | Chartered Accountants & Tax Advisory Dublin",
     template: "%s | RK & Associates",
   },
   description:
-    "RK & Associates — Dedicated to providing top-notch accountancy, VAT, payroll, company secretarial, taxation, and advisory services in Dublin, Ireland.",
+    "RK & Associates — Certified accountancy, strategic tax planning, VAT, payroll, company secretarial, and CRO compliance in Dublin, Ireland.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${plusJakarta.variable} ${jetbrainsMono.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col font-sans bg-slate-950 text-slate-900 selection:bg-emerald-500 selection:text-white">
+        {children}
+      </body>
     </html>
   );
 }
