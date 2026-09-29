@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ContactCTA } from "@/components/site/ContactCTA";
 import { BookOnlineButton } from "@/components/site/BookOnlineButton";
+import { HeroSection } from "@/components/site/HeroSection";
 
 export const metadata = {
   title: "About Us | RK & Associates",
@@ -12,58 +12,18 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <div className="flex flex-col bg-white">
-      {/* 1. Header Hero Banner with Advisory Team Image */}
-      <section className="relative overflow-hidden bg-slate-950 text-white pt-14 pb-20 lg:pt-20 lg:pb-28">
-        <div className="absolute inset-0 radial-glow pointer-events-none" />
-        <div className="relative mx-auto max-w-7xl px-6">
-          <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
-            <div className="lg:col-span-7 space-y-6">
-              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-bold text-emerald-400">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                ABOUT RK &amp; ASSOCIATES &bull; DUBLIN, IRELAND
-              </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
-                Dedicated to Irish Financial Excellence &amp; Growth
-              </h1>
-              <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
-                RK &amp; Associates is a premier accountancy and strategic advisory firm based in
-                Dublin. For over a decade, we have partnered with Irish SMEs, growing corporations,
-                and innovative founders to build robust financial foundations.
-              </p>
-              <div className="flex flex-wrap gap-4 pt-2">
-                <BookOnlineButton className="rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg transition hover:bg-emerald-500">
-                  Book a Consultation &rarr;
-                </BookOnlineButton>
-                <Link
-                  href="/services"
-                  className="rounded-xl border border-slate-700 bg-white/5 px-6 py-3.5 text-sm font-semibold text-slate-200 backdrop-blur transition hover:bg-white/10"
-                >
-                  Explore Practice Areas
-                </Link>
-              </div>
-            </div>
-
-            {/* Right Image */}
-            <div className="lg:col-span-5">
-              <div className="relative rounded-3xl overflow-hidden border border-slate-700 shadow-2xl bg-slate-900 group">
-                <Image
-                  src="/images/about-team.jpg"
-                  alt="RK & Associates Advisory Team Strategy Session"
-                  width={800}
-                  height={500}
-                  className="w-full h-auto object-cover transition duration-700 group-hover:scale-105"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-4 left-4 right-4 glass-panel rounded-xl p-3.5 text-xs text-white border border-white/10">
-                  <span className="font-bold text-emerald-400 block">Senior Partner Advisory Team</span>
-                  <span className="text-slate-300 text-[11px]">Chartered Accountants &bull; Tax Specialists &bull; CRO Compliance Officers</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 1. HERO SECTION */}
+      <HeroSection
+        imageSrc="/images/about-team.jpg"
+        imageAlt="RK & Associates Advisory Team — Dublin"
+        badge="About RK & Associates · Dublin, Ireland"
+        headline="Dedicated to Irish Financial Excellence & Growth"
+        subheadline="For over a decade, RK & Associates has partnered with Irish SMEs, growing corporations, and innovative founders to build robust financial foundations and achieve sustainable growth."
+        ctas={[
+          { label: "Book a Consultation →", isBooking: true, variant: "primary" },
+          { label: "Explore Practice Areas", href: "/services", variant: "ghost" },
+        ]}
+      />
 
       {/* 2. OUR STORY & PHILOSOPHY */}
       <section className="bg-white py-24">

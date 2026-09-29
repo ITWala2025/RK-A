@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { blogPosts } from "@/lib/domain/blog-content";
 import { servicePages } from "@/lib/domain/services-content";
 import { ContactCTA } from "@/components/site/ContactCTA";
+import { HeroSection } from "@/components/site/HeroSection";
 import { BookOnlineButton } from "@/components/site/BookOnlineButton";
 
 export const metadata = {
@@ -16,133 +16,25 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col bg-white">
-      {/* 1. HERO SECTION (Enterprise Grade with Dublin Financial District Image) */}
-      <section className="relative overflow-hidden bg-slate-950 text-white pt-12 pb-24 lg:pt-20 lg:pb-32">
-        {/* Background glow & subtle grid */}
-        <div className="absolute inset-0 radial-glow pointer-events-none" />
-        <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
-
-        <div className="relative mx-auto max-w-7xl px-6">
-          <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
-            {/* Left Content */}
-            <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-bold text-emerald-400 backdrop-blur">
-                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>Dublin, Ireland &bull; Certified Accountancy &amp; Strategic Advisory</span>
-              </div>
-
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
-                Precision Accounting &amp; Strategic Tax Advisory
-              </h1>
-
-              <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal max-w-2xl">
-                At RK &amp; Associates, we deliver top-tier accountancy services that safeguard
-                financial health, optimize Irish tax liabilities, and power sustainable growth for
-                enterprises, startups, and sole traders across Ireland.
-              </p>
-
-              {/* CTAs */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <Link
-                  href="/contact"
-                  className="rounded-xl bg-emerald-600 px-7 py-4 text-sm font-bold text-white shadow-xl shadow-emerald-950/50 transition hover:bg-emerald-500 hover:scale-[1.02]"
-                >
-                  GET IN TOUCH &rarr;
-                </Link>
-                <BookOnlineButton className="rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-7 py-4 text-sm font-bold text-emerald-300 backdrop-blur transition hover:bg-emerald-500/20 hover:border-emerald-400">
-                  BOOK CONSULTATION
-                </BookOnlineButton>
-                <Link
-                  href="/services"
-                  className="rounded-xl border border-slate-700 bg-white/5 px-6 py-4 text-sm font-semibold text-slate-300 backdrop-blur transition hover:bg-white/10 hover:text-white"
-                >
-                  VIEW SERVICES
-                </Link>
-              </div>
-
-              {/* Direct call & Trust indicators */}
-              <div className="pt-6 border-t border-slate-800/80 flex flex-wrap items-center gap-6 text-xs text-slate-400">
-                <a
-                  href="tel:+353899660987"
-                  className="flex items-center gap-2 font-bold text-emerald-400 hover:text-emerald-300 transition"
-                >
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400">
-                    📞
-                  </span>
-                  +353 89 966 0987
-                </a>
-                <span className="text-slate-600">&bull;</span>
-                <span className="flex items-center gap-1.5 text-slate-300">
-                  <span className="text-emerald-400 font-bold">✓</span> Revenue Ireland &amp; CRO Compliant
-                </span>
-                <span className="text-slate-600 hidden sm:inline">&bull;</span>
-                <span className="text-slate-400 hidden sm:inline">
-                  Bracetown Park, Dublin &amp; Saint Kevin&apos;s, D08
-                </span>
-              </div>
-            </div>
-
-            {/* Right Image Composition */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative rounded-3xl overflow-hidden border border-slate-700/80 shadow-2xl bg-slate-900 group">
-                <Image
-                  src="/images/hero-dublin.jpg"
-                  alt="RK & Associates Boardroom in Dublin Financial District"
-                  width={800}
-                  height={500}
-                  className="w-full h-auto object-cover transition duration-700 group-hover:scale-105"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
-
-                {/* Floating Glass Stats Card 1 */}
-                <div className="absolute bottom-4 left-4 right-4 glass-panel rounded-2xl p-4 text-xs text-white border border-white/10 flex items-center justify-between">
-                  <div>
-                    <span className="text-emerald-400 font-bold block text-sm">€2.4M+</span>
-                    <span className="text-slate-300 text-[11px]">Tax &amp; Compliance Managed</span>
-                  </div>
-                  <div className="text-right border-l border-slate-700 pl-4">
-                    <span className="text-white font-bold block text-sm">100%</span>
-                    <span className="text-slate-300 text-[11px]">Audit Exemption Safety</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. ENTERPRISE VALUE & STATS BAR */}
-      <section className="bg-slate-900 border-y border-slate-800 text-white py-10">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x-0 md:divide-x divide-slate-800">
-            <div className="px-4">
-              <div className="text-3xl sm:text-4xl font-extrabold text-emerald-400">10+</div>
-              <p className="mt-1 text-xs sm:text-sm text-slate-300 font-medium">
-                Years Industry Experience
-              </p>
-            </div>
-            <div className="px-4">
-              <div className="text-3xl sm:text-4xl font-extrabold text-white">100%</div>
-              <p className="mt-1 text-xs sm:text-sm text-slate-300 font-medium">
-                Revenue &amp; CRO Filing Accuracy
-              </p>
-            </div>
-            <div className="px-4">
-              <div className="text-3xl sm:text-4xl font-extrabold text-emerald-400">€0</div>
-              <p className="mt-1 text-xs sm:text-sm text-slate-300 font-medium">
-                Penalty Guarantee for Tracked Accounts
-              </p>
-            </div>
-            <div className="px-4">
-              <div className="text-3xl sm:text-4xl font-extrabold text-white">24-48h</div>
-              <p className="mt-1 text-xs sm:text-sm text-slate-300 font-medium">
-                Rapid SLA Turnaround
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 1. HERO SECTION */}
+      <HeroSection
+        imageSrc="/images/hero-dublin.jpg"
+        imageAlt="Dublin Financial District — RK & Associates"
+        badge="Dublin, Ireland · Chartered Accountancy & Strategic Advisory"
+        headline="Precision Financial Governance & Strategic Irish Tax Advisory"
+        subheadline="RK & Associates delivers institutional-grade chartered accountancy, corporate compliance, and proactive tax architecture tailored for Irish enterprises, high-growth startups, and international subsidiaries."
+        ctas={[
+          { label: "Get in Touch →", href: "/contact", variant: "primary" },
+          { label: "Book Consultation", isBooking: true, variant: "secondary" },
+          { label: "View Practice Areas", href: "/services", variant: "ghost" },
+        ]}
+        stats={[
+          { value: "10+", label: "Years In Practice" },
+          { value: "100%", label: "Statutory Accuracy" },
+          { value: "€0", label: "Penalty Guarantee" },
+          { value: "< 24h", label: "Partner Response" },
+        ]}
+      />
 
       {/* 3. WHAT WE OFFER — CORE PRACTICE AREAS (Euro €) */}
       <section className="bg-slate-50 py-24 border-b border-slate-200">

@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { servicePages } from "@/lib/domain/services-content";
 import { ContactCTA } from "@/components/site/ContactCTA";
 import { BookOnlineButton } from "@/components/site/BookOnlineButton";
+import { HeroSection } from "@/components/site/HeroSection";
 
 export const metadata = {
   title: "Our Services | Chartered Accountancy & Tax Advisory",
@@ -15,62 +15,18 @@ export default function ServicesPage() {
 
   return (
     <div className="flex flex-col bg-white">
-      {/* 1. HERO BANNER WITH SERVICES TECH IMAGE */}
-      <section className="relative overflow-hidden bg-slate-950 text-white pt-14 pb-20 lg:pt-20 lg:pb-28">
-        <div className="absolute inset-0 radial-glow pointer-events-none" />
-        <div className="relative mx-auto max-w-7xl px-6">
-          <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
-            <div className="lg:col-span-7 space-y-6">
-              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-bold text-emerald-400">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                INSTITUTIONAL GRADE ACCOUNTANCY SOLUTIONS
-              </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
-                Practice Areas &amp; Tailored Advisory
-              </h1>
-              <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
-                Comprehensive accountancy, statutory Revenue compliance, and strategic financial
-                governance tailored for Irish SMEs, founders, and growing corporate entities.
-              </p>
-              <div className="flex flex-wrap gap-4 pt-2">
-                <BookOnlineButton className="rounded-xl bg-emerald-600 px-7 py-4 text-sm font-bold text-white shadow-xl transition hover:bg-emerald-500">
-                  Open Booking Modal &rarr;
-                </BookOnlineButton>
-                <Link
-                  href="/contact"
-                  className="rounded-xl border border-slate-700 bg-white/5 px-6 py-4 text-sm font-semibold text-slate-200 backdrop-blur transition hover:bg-white/10"
-                >
-                  Request Custom Quote
-                </Link>
-              </div>
-            </div>
-
-            {/* Right Image */}
-            <div className="lg:col-span-5">
-              <div className="relative rounded-3xl overflow-hidden border border-slate-700 shadow-2xl bg-slate-900 group">
-                <Image
-                  src="/images/services-tech.jpg"
-                  alt="Modern Cloud Accounting & Tax Analytics Workspace"
-                  width={800}
-                  height={500}
-                  className="w-full h-auto object-cover transition duration-700 group-hover:scale-105"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-4 left-4 right-4 glass-panel rounded-xl p-3.5 text-xs text-white border border-white/10 flex items-center justify-between">
-                  <div>
-                    <span className="font-bold text-emerald-400 block">Cloud Analytics &amp; VAT</span>
-                    <span className="text-slate-300 text-[11px]">Real-Time Revenue ROS Sync</span>
-                  </div>
-                  <span className="text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2.5 py-1 rounded-md font-mono font-bold">
-                    EUR (€)
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 1. HERO SECTION */}
+      <HeroSection
+        imageSrc="/images/services-tech.jpg"
+        imageAlt="Cloud Accounting & Tax Analytics Workspace — RK & Associates"
+        badge="Institutional Grade Accountancy Solutions"
+        headline="Practice Areas & Tailored Advisory Services"
+        subheadline="Comprehensive accountancy, statutory Revenue compliance, and strategic financial governance tailored for Irish SMEs, founders, and growing corporate entities."
+        ctas={[
+          { label: "Open Booking →", isBooking: true, variant: "primary" },
+          { label: "Request Custom Quote", href: "/contact", variant: "ghost" },
+        ]}
+      />
 
       {/* 2. FEATURED DIRECT CONSULTATION PACKAGES (Euro €) */}
       <section className="bg-slate-900 text-white py-20 border-b border-slate-800">
