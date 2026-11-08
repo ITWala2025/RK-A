@@ -1,48 +1,20 @@
-import { notFound } from "next/navigation";
-import { customersRepository } from "@/lib/data/customers.repository";
-import { quotesRepository } from "@/lib/data/quotes.repository";
-import { invoicesRepository } from "@/lib/data/invoices.repository";
-import { complianceRepository } from "@/lib/data/compliance.repository";
-import { staffRepository } from "@/lib/data/staff.repository";
-import { leadsRepository } from "@/lib/data/leads.repository";
-import { Customer360Hub } from "@/components/admin/Customer360Hub";
+"use client";
 
-export default async function CustomerDetailPage({
+import React, { use, Suspense } from "react";
+import { Customer360Hub } from "@/components/customer/Customer360Hub";
+
+export const dynamic = "force-dynamic";
+
+export default function CustomerDetailPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const { id } = await params;
-  const [customer, allCustomers, quotes, invoices, compliance, staff, leads] =
-    await Promise.all([
-      customersRepository.getById(id),
-      customersRepository.list(),
-      quotesRepository.list(),
-      invoicesRepository.list(),
-      complianceRepository.listByCustomer(id),
-      staffRepository.list(),
-      leadsRepository.list(),
-    ]);
-
-  if (!customer) notFound();
-
-  const customerQuotes = quotes.filter((q) => q.customerId === id);
-  const customerInvoices = invoices.filter((i) => i.customerId === id);
-  const customerLeads = leads.filter(
-    (l) =>
-      l.companyName?.toLowerCase().includes(customer.legalEntityName.toLowerCase()) ||
-      customer.legalEntityName.toLowerCase().includes(l.companyName?.toLowerCase() || "")
-  );
+  const resolvedParams = use(params);
 
   return (
-    <Customer360Hub
-      customer={customer}
-      allCustomers={allCustomers}
-      quotes={customerQuotes}
-      invoices={customerInvoices}
-      complianceItems={compliance}
-      staff={staff}
-      leads={customerLeads}
-    />
+    <Suspense fallback={<div className="p-8 text-center text-slate-500">Loading Customer 360...</div>}>
+      <Customer360Hub initialCustomerId={resolvedParams.id} />
+    </Suspense>
   );
 }
